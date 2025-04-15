@@ -21,6 +21,18 @@
     <div>Prodejní formulář je vytvořen v systému <a href="https://www.simpleshop.cz/?utm_source=simpleshop&utm_medium=form&utm_campaign=44446" target="_blank">SimpleShop.cz</a>.</div>
   </div>
   <script>
+  function sendHeight() {
+    const height = document.body.scrollHeight;
+    parent.postMessage({ type: "resize", height: height }, "*");
+  }
+
+  window.addEventListener("load", () => {
+    sendHeight();
+    // Přepočítej výšku v intervalu – např. kvůli validaci, rozkliknutí, apod.
+    setInterval(sendHeight, 1000);
+  });
+</script>
+  <script>
     (function(i, s, o, g, r, a, m) {
       i[r] = i[r] || function() {
         (i[r].q = i[r].q || []).push(arguments)
