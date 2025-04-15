@@ -2,38 +2,55 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SimpleShop Form</title>
   <style>
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    #formWrapper {
+      width: 100%;
     }
   </style>
 </head>
 <body>
-  <div data-SimpleShopForm="2lKpA"></div>
-
+  <!-- www.SimpleShop.cz form#117426 start -->
+  <div id="formWrapper" data-SimpleShopForm="2lKpA">
+    <div>Prodejní formulář je vytvořen v systému <a href="https://www.simpleshop.cz/?utm_source=simpleshop&utm_medium=form&utm_campaign=44446" target="_blank">SimpleShop.cz</a>.</div>
+  </div>
   <script>
-    (function(i, s, o, g, r, a, m){
-      i[r] = i[r] || function(){
+    (function(i, s, o, g, r, a, m) {
+      i[r] = i[r] || function() {
         (i[r].q = i[r].q || []).push(arguments)
       }, i[r].l = 1 * new Date();
       a = s.createElement(o),
       m = s.getElementsByTagName(o)[0];
       a.async = 1;
       a.src = g;
-      m.parentNode.insertBefore(a, m)
+      m.parentNode.insertBefore(a, m);
     })(window, document, "script", "https://form.simpleshop.cz/prj/js/SimpleShopService.js", "sss");
+
     sss("createForm", "2lKpA");
 
-    // Odeslání výšky do rodiče
-    function sendHeight() {
+    function postHeight() {
       const height = document.body.scrollHeight;
       parent.postMessage({ type: "setHeight", height }, "*");
     }
 
-    window.addEventListener("load", sendHeight);
-    window.addEventListener("resize", sendHeight);
-    setInterval(sendHeight, 500); // pro dynamické části formuláře
+    const resizeObserver = new ResizeObserver(() => {
+      postHeight();
+    });
+
+    // Observe wrapper div
+    window.addEventListener("load", () => {
+      const formWrapper = document.getElementById("formWrapper");
+      if (formWrapper) resizeObserver.observe(formWrapper);
+      // also post height on load for safety
+      postHeight();
+    });
   </script>
+  <!-- www.SimpleShop.cz form#117426 end -->
 </body>
 </html>
