@@ -22,6 +22,14 @@
   window.addEventListener("load", () => setTimeout(sendHeight, 1500));  // Počkáme na načtení obsahu
   setInterval(sendHeight, 1000);  // Každou sekundu pošle novou výšku
 </script>
+  <script>
+  var iframe = document.getElementById("simpleForm");
+
+  iframe.onload = function() {
+    // Posunout scroll na začátek iframe
+    iframe.contentWindow.scrollTo(0, 0);
+  };
+</script>
 
   <script>
     (function(i, s, o, g, r, a, m){
