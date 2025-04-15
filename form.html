@@ -9,12 +9,9 @@
   </style>
 </head>
 <body>
-  <div data-SimpleShopForm="2lKpA">
-    <div>Prodejní formulář je vytvořen v systému 
-      <a href="https://www.simpleshop.cz/?utm_source=simpleshop&utm_medium=form&utm_campaign=44446" target="_blank">SimpleShop.cz</a>.
-    </div>
-  </div>
-  
+<!-- SimpleShop Form Embed -->
+<div data-SimpleShopForm="2lKpA"></div>
+
 <script>
   (function(i, s, o, g, r, a, m) {
     i[r] = i[r] || function() {
@@ -29,18 +26,20 @@
 
   sss("createForm", "2lKpA");
 
-  // Najdi odesílací tlačítko (čekáme, až se načte)
-  const interval = setInterval(() => {
-    const btn = document.querySelector("button[type=submit]");
-    if (btn) {
-      clearInterval(interval);
-      btn.addEventListener("click", () => {
-        // Po kliknutí pošli zprávu do parent stránky (i když je cross-origin)
-        parent.postMessage("SimpleShopFormSubmitted", "*");
-      });
-    }
-  }, 500);
+  // Funkce na odesílání výšky
+  function sendHeight() {
+    const height = document.body.scrollHeight;
+    parent.postMessage({ type: "setHeight", height }, "*");
+  }
+
+  // Posílej výšku po načtení a při změně
+  window.addEventListener("load", sendHeight);
+  window.addEventListener("resize", sendHeight);
+
+  // Opakovaně zjišťuj výšku kvůli dynamickým změnám
+  setInterval(sendHeight, 500);
 </script>
+
 </body>
 </html>
 
