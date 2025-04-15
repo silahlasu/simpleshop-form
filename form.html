@@ -38,6 +38,20 @@
   const height = document.body.scrollHeight; // Získání výšky obsahu
   parent.postMessage({ type: "setHeight", height }, "*"); // Odeslání zprávy do rodičovského okna
 }
+    <script>
+  function sendHeight() {
+    const height = document.body.scrollHeight;
+    parent.postMessage({ type: "resize", height: height }, "*");
+  }
+
+  // Počkej na načtení formuláře a pak pošli výšku
+  window.addEventListener("load", () => {
+    sendHeight();
+
+    // Můžeš i opakovaně, pokud se formulář dynamicky mění
+    setInterval(sendHeight, 1000);
+  });
+</script>
 
 const resizeObserver = new ResizeObserver(() => {
   postHeight();
