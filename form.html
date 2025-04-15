@@ -35,21 +35,22 @@
     sss("createForm", "2lKpA");
 
     function postHeight() {
-      const height = document.body.scrollHeight;
-      parent.postMessage({ type: "setHeight", height }, "*");
-    }
+  const height = document.body.scrollHeight; // Získání výšky obsahu
+  parent.postMessage({ type: "setHeight", height }, "*"); // Odeslání zprávy do rodičovského okna
+}
 
-    const resizeObserver = new ResizeObserver(() => {
-      postHeight();
-    });
+const resizeObserver = new ResizeObserver(() => {
+  postHeight();
+});
 
-    // Observe wrapper div
-    window.addEventListener("load", () => {
-      const formWrapper = document.getElementById("formWrapper");
-      if (formWrapper) resizeObserver.observe(formWrapper);
-      // also post height on load for safety
-      postHeight();
-    });
+// Počkejte na načtení obsahu a začněte sledovat změny výšky
+window.addEventListener("load", () => {
+  const formWrapper = document.getElementById("formWrapper");
+  if (formWrapper) resizeObserver.observe(formWrapper);
+  // Po načtení stránky také odeslat výšku
+  postHeight();
+});
+
   </script>
   <!-- www.SimpleShop.cz form#117426 end -->
 </body>
