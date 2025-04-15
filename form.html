@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SimpleShop Form</title>
   <style>
     html, body {
@@ -10,74 +10,40 @@
       padding: 0;
       overflow-x: hidden;
     }
-    #formWrapper {
-      width: 100%;
-    }
   </style>
 </head>
 <body>
   <!-- www.SimpleShop.cz form#117426 start -->
-  <div id="formWrapper" data-SimpleShopForm="2lKpA">
-    <div>Prodejní formulář je vytvořen v systému <a href="https://www.simpleshop.cz/?utm_source=simpleshop&utm_medium=form&utm_campaign=44446" target="_blank">SimpleShop.cz</a>.</div>
+  <div data-SimpleShopForm="2lKpA">
+    <div>Prodejní formulář je vytvořen v systému
+      <a href="https://www.simpleshop.cz/?utm_source=simpleshop&utm_medium=form&utm_campaign=44446" target="_blank">SimpleShop.cz</a>.
+    </div>
   </div>
   <script>
-  function sendHeight() {
-    const height = document.body.scrollHeight;
-    parent.postMessage({ type: "resize", height: height }, "*");
-  }
-
-  window.addEventListener("load", () => {
-    sendHeight();
-    // Přepočítej výšku v intervalu – např. kvůli validaci, rozkliknutí, apod.
-    setInterval(sendHeight, 1000);
-  });
-</script>
-  <script>
-    (function(i, s, o, g, r, a, m) {
-      i[r] = i[r] || function() {
+    (function(i, s, o, g, r, a, m){
+      i[r] = i[r] || function(){
         (i[r].q = i[r].q || []).push(arguments)
       }, i[r].l = 1 * new Date();
       a = s.createElement(o),
       m = s.getElementsByTagName(o)[0];
       a.async = 1;
       a.src = g;
-      m.parentNode.insertBefore(a, m);
+      m.parentNode.insertBefore(a, m)
     })(window, document, "script", "https://form.simpleshop.cz/prj/js/SimpleShopService.js", "sss");
-
     sss("createForm", "2lKpA");
-
-    function postHeight() {
-  const height = document.body.scrollHeight; // Získání výšky obsahu
-  parent.postMessage({ type: "setHeight", height }, "*"); // Odeslání zprávy do rodičovského okna
-}
-    <script>
-  function sendHeight() {
-    const height = document.body.scrollHeight;
-    parent.postMessage({ type: "resize", height: height }, "*");
-  }
-
-  // Počkej na načtení formuláře a pak pošli výšku
-  window.addEventListener("load", () => {
-    sendHeight();
-
-    // Můžeš i opakovaně, pokud se formulář dynamicky mění
-    setInterval(sendHeight, 1000);
-  });
-</script>
-
-const resizeObserver = new ResizeObserver(() => {
-  postHeight();
-});
-
-// Počkejte na načtení obsahu a začněte sledovat změny výšky
-window.addEventListener("load", () => {
-  const formWrapper = document.getElementById("formWrapper");
-  if (formWrapper) resizeObserver.observe(formWrapper);
-  // Po načtení stránky také odeslat výšku
-  postHeight();
-});
-
   </script>
   <!-- www.SimpleShop.cz form#117426 end -->
+
+  <script>
+    function sendHeight() {
+      const height = document.body.scrollHeight;
+      parent.postMessage({ type: "resize", height: height }, "*");
+    }
+
+    window.addEventListener("load", () => {
+      sendHeight();
+      setInterval(sendHeight, 1000); // kontrola každou sekundu
+    });
+  </script>
 </body>
 </html>
